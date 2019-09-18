@@ -50,3 +50,4 @@ void Insert(pnode head, int password);
 bash-3.2$ ./app 20 7 3 1 7 2 4 8 4
 6 1 4 7 2 3 5
 ```
+同时包含结果的文件out.txt被输出到运行目录下。
