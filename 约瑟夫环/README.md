@@ -12,24 +12,24 @@
 分别采用循环链表（不删除节点），循环链表（删除节点），线性表三种方式进行实现。
 ## 函数解释
 * 字符串转整形，默认输入均为正整数，若遇到非数字字符直接返回-1，否则返回数值。
-‘’‘c
+```c
 int str2int(const char * str);
-'''
+```
 * 初始化链表，返回链表头节点
-'''c
+```c
 pnode CreateNode();
-'''
+```
 * 向链表插入新节点
-'''c
+```c
 void Insert(pnode head, int password);
-'''
+```
 ## 宏解释
 程序共定义了三个宏，分别对应三种实现方式。
-'''c
+```c
 #define LINK_NODE_NO_DELETE
 //#define LINK_NODE_WITH_DELETE
 //#define ADT_LIST
-'''
+```
 ## 错误处理
 当输入有误时程序将发出错误提示并停止运行。
 * 错误样例
@@ -46,7 +46,7 @@ void Insert(pnode head, int password);
 
 ## 结果演示
 测试样例：
-'''bash
+```bash
 bash-3.2$ ./app 20 7 3 1 7 2 4 8 4
 6 1 4 7 2 3 5
-'''
+```
