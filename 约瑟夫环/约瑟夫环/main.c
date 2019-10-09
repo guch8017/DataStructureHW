@@ -6,9 +6,9 @@
 //  Copyright © 2019 guch8017. All rights reserved.
 //
 
-//#define LINK_NODE_NO_DELETE
+#define LINK_NODE_NO_DELETE
 //#define LINK_NODE_WITH_DELETE
-#define ADT_LIST
+//#define ADT_LIST
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -115,43 +115,43 @@ int main(int argc, const char * argv[]) {
 #endif
     //不删除节点方案
 #ifdef LINK_NODE_NO_DELETE
-    pnode p = Head->next;
-    while(n){
-        if(p->flag){
-            p = p->next;
-            continue;
-        }
-        count++;
-        if(count == m){
-            p->flag = 1;
-            m = p->password;
-            count=0;
-            printf("%d,",p->id);
-            fprintf(fp, "%d ",p->id);
-            n--;
-        }
+pnode p = Head->next;
+while(n){
+    if(p->flag){
         p = p->next;
+        continue;
     }
+    count++;
+    if(count == m){
+        p->flag = 1;
+        m = p->password;
+        count=0;
+        printf("%d,",p->id);
+        fprintf(fp, "%d ",p->id);
+        n--;
+    }
+    p = p->next;
+}
 #endif
 //BEGIN OF 删除节点方案
 #ifdef LINK_NODE_WITH_DELETE
-    pnode p1 = Head, p2 = Head->next;
-    while(n){
-        count++;
-        if(count == m){
-            m = p2->password;
-            count = 0;
-            n--;
-            printf("%d,",p2->id);
-            fprintf(fp, "%d ",p2->id);
-            p1->next = p2->next;
-            free(p2);
-            p2 = p1->next;
-        }else{
-            p1 = p2;
-            p2 = p2->next;
-        }
+pnode p1 = Head, p2 = Head->next;
+while(n){
+    count++;
+    if(count == m){
+        m = p2->password;
+        count = 0;
+        n--;
+        printf("%d,",p2->id);
+        fprintf(fp, "%d ",p2->id);
+        p1->next = p2->next;
+        free(p2);
+        p2 = p1->next;
+    }else{
+        p1 = p2;
+        p2 = p2->next;
     }
+}
 #endif
     //END OF 删除节点方案
     //BEGIN OF 顺序表方案
