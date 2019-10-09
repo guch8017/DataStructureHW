@@ -62,7 +62,7 @@ char check(int depth, int posy){
     return 1;
 }
 
-int Solution(int n){
+int Solution(int n, FILE * outfp){
     nList = (int *)malloc(sizeof(int) * (n+1));
     for(int i=1; i<=n; i++){
         nList[i] = 0;
@@ -90,8 +90,10 @@ int Solution(int n){
                 cnt++;
 #ifndef U_DEBUG
                 printf("%d:",cnt);
+                fprintf(outfp,"%d:",cnt);
                 for(int j=1;j<=n;j++){
                     printf(" %d",nList[j]);
+                    fprintf(outfp," %d",nList[j]);
                 }
                 putchar('\n');
 #endif
@@ -162,7 +164,54 @@ void solver(int depth){
 
 int main(int argc, const char * argv[]) {
     int n;
-    n=8;
+    int param[2] = {0};
+    for(int i=1;i<argc;i+=2){
+        if(!strcmp(argv[i], "-i")){
+            if(argc < i + 2){
+                printf("Option %s requires an argument\n",argv[i]);
+                return 0;
+            }
+            param[0] = i+1;
+        }else if(!strcmp(argv[i], "-o")){
+            if(argc < i + 2){
+                printf("Option %s requires an argument\n",argv[i]);
+                return 0;
+            }
+            param[1] = i+1;
+        }else if(!strcmp(argv[i], "-?")){
+            printf("decode [-i input file][-o output file]\n");
+            printf("\t-i\t\t#Input file. If not defined will use 'in.txt'\n");
+            printf("\t-o\t\t#Output file. If not defined will use 'out.txt'\n");
+            return 0;
+        }else{
+            printf("Unknown option: %s\nUse param -? to get help.\n",argv[i]);
+            return 0;
+        }
+    }
+    //char * s;//读入数据
+    FILE * infp;
+    FILE * outfp;
+    if(param[0]){
+        infp = fopen(argv[param[0]], "r");
+    }else{
+        infp = fopen("in.txt", "r");
+    }
+    if(param[1]){
+        outfp = fopen(argv[param[1]], "w");
+    }else{
+        outfp = fopen("out.txt", "w");
+    }
+    if(!infp){
+        printf("[E] 无法打开输入文件\n");
+        return 0;
+    }
+    if(!outfp){
+        printf("[E] 无法打开输出文件\n");
+        return 0;
+    }
+    fscanf(infp,"%d",n);
     //n = atoi(argv[1]);
-    printf("%d\n",Solution(n));
+    int ans = Solution(n,outfp);
+    printf("%d\n",ans);
+    fprintf(outfp,"%d\n",ans);
 }
