@@ -6,6 +6,8 @@
 //  Copyright © 2019 guch8017. All rights reserved.
 //
 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -147,5 +149,7 @@ int main(int argc, const char * argv[]) {
     }
     printf("Read In\n");
     Solution(outfp);
+         
+     
     return 0;
 }
